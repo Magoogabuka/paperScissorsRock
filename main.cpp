@@ -16,7 +16,7 @@ class Game{
 
         void playGame();
         char getChoice();
-        int checkWin(string &player1, string &player2, string &playerOneName, string &playerTwoName);
+        bool checkWin(string &player1, string &player2, string &playerOneName, string &playerTwoName);
 
         void waitForKeyPress();
         void clearScreen();
@@ -55,7 +55,7 @@ char Game::menuScreen()
 void Game::playGame()
 {
     string player1, player2;
-    int keepPlaying;
+    bool keepPlaying;
     string playerOneChoice, playerTwoChoice;
 
     cout<<"Choose name for player 1: ";
@@ -83,11 +83,11 @@ void Game::playGame()
         
         keepPlaying = checkWin(playerOneChoice, playerTwoChoice, player1, player2);
 
-    } while(keepPlaying == -1);
+    } while(keepPlaying);
 }
 
 
-int Game::checkWin(string &player1, string &player2, string &playerOneName, string &playerTwoName)
+bool Game::checkWin(string &player1, string &player2, string &playerOneName, string &playerTwoName)
 {
     char checkPlayerOne;
 
@@ -100,17 +100,17 @@ int Game::checkWin(string &player1, string &player2, string &playerOneName, stri
                 if(player2 == "scissors")
                 {
                 cout<<"Player "<<playerOneName<<" used rock and Player "<<playerTwoName<<" used scissors! Player "<<playerOneName<<" wins!"<<endl;
-                return 1; 
+                return true; 
                 }
                 else if(player2 == "paper")
                 {
                     cout<<"Player "<<playerOneName<<" used rock and Player "<<playerTwoName<<" used paper! Player "<<playerTwoName<<" wins!"<<endl;
-                    return 1;
+                    return true;
                 }
                 else if(player2 == "rock")
                 {
                     cout<<"Player "<<playerTwoName<<" and Player "<<playerOneName<<" used rock! No-one wins!"<<endl;
-                    return -1;
+                    return false;
                 }
                 break;
        }
@@ -123,17 +123,17 @@ int Game::checkWin(string &player1, string &player2, string &playerOneName, stri
             if(player2 == "scissors")
                 {
                 cout<<"Player "<<playerOneName<<" and Player "<<playerTwoName<<" used scissors! No-one wins!"<<endl;
-                return -1; 
+                return false; 
                 }
                 else if(player2 == "paper")
                 {
                     cout<<"Player "<<playerOneName<<" used scissors and Player "<<playerTwoName<<" used paper! Player "<<playerOneName<<" wins!"<<endl;
-                    return 1;
+                    return true;
                 }
                 else if(player2 == "rock")
                 {
                     cout<<"Player "<<playerOneName<<" used scissors and Player "<<playerTwoName<<" used rock! Player "<<playerTwoName<<" wins!"<<endl;
-                    return 1;
+                    return true;
                 }
                 break;
         }
@@ -146,23 +146,23 @@ int Game::checkWin(string &player1, string &player2, string &playerOneName, stri
             if(player2 == "scissors")
                 {
                 cout<<"Player "<<playerOneName<<" used paper and Player "<<playerTwoName<<" used scissors! Player "<<playerTwoName<<" wins!"<<endl;
-                return 1; 
+                return true; 
                 }
                 else if(player2 == "paper")
                 {
                     cout<<"Player "<<playerOneName<<" and Player "<<playerTwoName<<" used paper! No-one wins!"<<endl;
-                    return -1;
+                    return false;
                 }
                 else if(player2 == "rock")
                 {
                     cout<<"Player "<<playerOneName<<" used paper and Player "<<playerTwoName<<" used rock! Player "<<playerOneName<<" wins!"<<endl;
-                    return 1;
+                    return true;
                 }
                 break;
         }
     }
 
-       return -1; 
+       return false; 
 }
 void Game::clearScreen()
 {
